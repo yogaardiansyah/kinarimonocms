@@ -9,6 +9,17 @@
     {{-- Memanggil komponen hero section khusus untuk halaman home --}}
     <x-home.hero />
 
+      <x-home.upcoming-events />
+
+       <x-home.vision-mission />
+
+       <x-home.activities />
+
+       <x-home.showcase-and-embed />
+
+        <x-home.join-community />
+
+
     {{-- Anda bisa menambahkan konten lain untuk halaman home di sini --}}
     <div class="container mx-auto p-8">
         <h2 class="text-3xl font-bold text-center mb-4">Konten Lainnya</h2>
