@@ -18,6 +18,8 @@ use Illuminate\Foundation\Http\Middleware\VerifyCsrfToken;
 use Illuminate\Routing\Middleware\SubstituteBindings;
 use Illuminate\Session\Middleware\StartSession;
 use Illuminate\View\Middleware\ShareErrorsFromSession;
+use Hasnayeen\Themes\ThemesPlugin;
+use Hasnayeen\Themes\Http\Middleware\SetTheme;
 
 class AdminPanelProvider extends PanelProvider
 {
@@ -51,15 +53,16 @@ class AdminPanelProvider extends PanelProvider
                 SubstituteBindings::class,
                 DisableBladeIconComponents::class,
                 DispatchServingFilamentEvent::class,
-                \Hasnayeen\Themes\Http\Middleware\SetTheme::class,
-            ])
-            ->plugins([
-                FilamentShieldPlugin::make(),
+                // Pastikan middleware dari Hasnayeen Themes ada di sini
+                SetTheme::class,
             ])
             ->authMiddleware([
                 Authenticate::class,
-            ])->plugin(
-            \Hasnayeen\Themes\ThemesPlugin::make()
-        );
+            ])
+            // Daftarkan semua plugin di dalam array ini
+            ->plugins([
+                FilamentShieldPlugin::make(),
+                ThemesPlugin::make(),
+            ]);
     }
 }
