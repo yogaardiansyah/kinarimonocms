@@ -20,6 +20,8 @@ use Illuminate\Session\Middleware\StartSession;
 use Illuminate\View\Middleware\ShareErrorsFromSession;
 use Hasnayeen\Themes\ThemesPlugin;
 use Hasnayeen\Themes\Http\Middleware\SetTheme;
+use Joaopaulolndev\FilamentEditProfile\FilamentEditProfilePlugin;
+
 
 class AdminPanelProvider extends PanelProvider
 {
@@ -53,7 +55,7 @@ class AdminPanelProvider extends PanelProvider
                 SubstituteBindings::class,
                 DisableBladeIconComponents::class,
                 DispatchServingFilamentEvent::class,
-                // Pastikan middleware dari Hasnayeen Themes ada di sini
+                    // Pastikan middleware dari Hasnayeen Themes ada di sini
                 SetTheme::class,
             ])
             ->authMiddleware([
@@ -61,8 +63,18 @@ class AdminPanelProvider extends PanelProvider
             ])
             // Daftarkan semua plugin di dalam array ini
             ->plugins([
-                FilamentShieldPlugin::make(),
                 ThemesPlugin::make(),
+
+            ])->plugin(
+                \TomatoPHP\FilamentSettingsHub\FilamentSettingsHubPlugin::make()
+                    ->allowSiteSettings()
+                    ->allowSocialMenuSettings()
+            )->plugin(
+                \TomatoPHP\FilamentSeo\FilamentSeoPlugin::make()
+            )->plugin(\TomatoPHP\FilamentUsers\FilamentUsersPlugin::make())
+            ->plugin(\BezhanSalleh\FilamentShield\FilamentShieldPlugin::make())
+            ->plugins([
+                FilamentEditProfilePlugin::make()->shouldShowAvatarForm()
             ]);
     }
 }

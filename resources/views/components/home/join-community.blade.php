@@ -11,21 +11,21 @@
 >
     <div class="flex flex-col-reverse md:flex-row items-center justify-center w-full max-w-7xl gap-10">
 
-        {{-- Kolom Kiri: Formulir Pendaftaran --}}
+        {{-- Kolom Kiri: Teks Ajakan & Formulir Aplikasi --}}
         <div class="flex-1 flex justify-center w-full">
             <div
                 class="max-w-md w-full bg-white/10 backdrop-blur-md shadow-xl rounded-xl p-6 sm:p-8 md:p-10 text-white"
             >
+                {{-- Judul diubah menjadi lebih personal dan berorientasi pada aksi --}}
                 <h1 class="text-2xl sm:text-3xl lg:text-4xl font-semibold mb-4 text-left">
-                    Join Our Community
+                    Jadilah Bagian dari Cerita Kami
                 </h1>
-                <p class="mb-6 text-sm sm:text-base opacity-90 text-left">
-                    Dapatkan konten eksklusif, bagikan karyamu, dan terhubung dengan sesama antusias!
-                </p>
+                {{-- Deskripsi diubah untuk menjelaskan peran sebagai kontributor --}}
+             
 
-                {{-- Arahkan 'action' ke rute yang sesuai untuk menangani pendaftaran --}}
-                <form action="#" method="POST" class="space-y-5 text-left">
-                    @csrf {{-- Penting untuk keamanan form di Laravel --}}
+                {{-- Arahkan 'action' ke rute yang akan memproses aplikasi, contoh: route('community.apply') --}}
+                <form action="" method="POST" class="space-y-5 text-left">
+                    @csrf
 
                     <div>
                         <label for="name" class="block text-sm font-medium mb-1 text-white/80">
@@ -37,9 +37,7 @@
                             type="text"
                             placeholder="Masukkan namamu"
                             required
-                            class="w-full p-3 border border-white/30 rounded-md 
-                                   bg-white/20 text-white placeholder-white/60
-                                   focus:outline-none focus:ring-2 focus:ring-purple-400 focus:border-transparent transition"
+                            class="w-full p-3 border border-white/30 rounded-md bg-white/20 text-white placeholder-white/60 focus:outline-none focus:ring-2 focus:ring-purple-400 focus:border-transparent transition"
                         />
                     </div>
                     
@@ -51,47 +49,44 @@
                             id="instagram"
                             name="instagram"
                             type="text"
-                            placeholder="@username"
+                            placeholder="username (untuk kami lihat karyamu)"
                             required
-                            class="w-full p-3 border border-white/30 rounded-md 
-                                   bg-white/20 text-white placeholder-white/60
-                                   focus:outline-none focus:ring-2 focus:ring-purple-400 focus:border-transparent transition"
+                            class="w-full p-3 border border-white/30 rounded-md bg-white/20 text-white placeholder-white/60 focus:outline-none focus:ring-2 focus:ring-purple-400 focus:border-transparent transition"
                         />
                     </div>
 
+                    {{-- [BARU] Menambahkan field alasan, ini penting untuk proses seleksi --}}
                     <div>
-                        <label for="email" class="block text-sm font-medium mb-1 text-white/80">
-                            Email Kamu
+                        <label for="reason" class="block text-sm font-medium mb-1 text-white/80">
+                            Kenapa ingin bergabung dengan tim Kinarimono?
                         </label>
-                        <input
-                            id="email"
-                            name="email"
-                            type="email"
-                            placeholder="Masukkan emailmu"
+                        <textarea
+                            id="reason"
+                            name="reason"
+                            rows="3"
+                            placeholder="Ceritakan sedikit tentang passion-mu..."
                             required
-                            class="w-full p-3 border border-white/30 rounded-md 
-                                   bg-white/20 text-white placeholder-white/60
-                                   focus:outline-none focus:ring-2 focus:ring-purple-400 focus:border-transparent transition"
-                        />
+                            class="w-full p-3 border border-white/30 rounded-md bg-white/20 text-white placeholder-white/60 focus:outline-none focus:ring-2 focus:ring-purple-400 focus:border-transparent transition"
+                        ></textarea>
                     </div>
+
+                    {{-- Tombol diubah menjadi lebih sesuai dengan konteks aplikasi --}}
                     <button
                         type="submit"
-                        class="w-full py-3 bg-purple-600 text-white font-semibold rounded-md 
-                               hover:bg-purple-700 transition-colors
-                               focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 
-                               focus:ring-offset-gray-900" {{-- ring-offset disesuaikan untuk background gelap --}}
+                        class="w-full py-3 bg-purple-600 text-white font-semibold rounded-md hover:bg-purple-700 transition-colors focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 focus:ring-offset-gray-900"
                     >
-                        Join Now
+                        Kirim Aplikasi Bergabung
                     </button>
                 </form>
 
+                {{-- Teks di bawah form diubah untuk mereferensikan nilai-nilai di atas --}}
                 <p class="mt-6 text-xs text-white/70 text-left">
-                    Dengan bergabung, kamu setuju dengan Syarat & Ketentuan dan Kebijakan Privasi kami.
+                    Dengan mengirim aplikasi, kamu menyatakan telah membaca dan setuju dengan prinsip komunitas kami.
                 </p>
             </div>
         </div>
 
-        {{-- Kolom Kanan: Gambar Maskot --}}
+        {{-- Kolom Kanan: Gambar Maskot (Tidak ada perubahan) --}}
         <div class="flex-1 flex justify-center items-center">
             <img
                 src="{{ $mascotImage }}"

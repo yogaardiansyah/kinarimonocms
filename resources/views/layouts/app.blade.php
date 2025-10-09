@@ -13,6 +13,8 @@
     {{-- Menggunakan Vite untuk memuat aset CSS dan JS (standar Laravel 10+) --}}
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 
+       <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+
     <style>
         @import url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Syncopate:wght@400;700&display=swap");
 @import "tailwindcss";

@@ -32,10 +32,10 @@
         
         {{-- Judul --}}
         <h2 class="text-3xl sm:text-4xl md:text-5xl font-extrabold mb-2 text-gray-900">
-            Upcoming Announced Events
+            Liputan Terakhir Kami
         </h2>
         <p class="text-md sm:text-lg md:text-xl text-gray-700 mb-12 sm:mb-16 md:mb-20">
-            (Choose your region)
+            (Region)
         </p>
 
         {{-- Grid Kartu Region --}}
