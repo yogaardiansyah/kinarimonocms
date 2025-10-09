@@ -3,6 +3,7 @@
     use Illuminate\Support\Facades\Route;
     use App\Http\Controllers\JFestController;
     use App\Http\Controllers\ArticleController;
+    use App\Http\Controllers\GalleryController;
 
     Route::get('/', function () {
         // Ini memberitahu Laravel untuk merender file 'home.blade.php'
@@ -62,10 +63,7 @@
         return view('pages.prinsip-komunitas'); 
     })->name('pages.prinsip-komunitas');
 
-    Route::get('/galeri', function () {
-        // Nantinya, Anda akan mengambil data gambar dari database di sini
-        return view('pages.gallery');
-    })->name('pages.gallery');
+Route::get('/galeri', [GalleryController::class, 'index'])->name('pages.gallery');
 
 
 //     // 1. Halaman Artikel / Blog
