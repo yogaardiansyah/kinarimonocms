@@ -27,11 +27,7 @@ class GalleryResource extends Resource
     protected static ?string $model = Gallery::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-photo';
-
-    // Mengelompokkan navigasi
     protected static ?string $navigationGroup = 'Content Management';
-
-    // Urutan di dalam grup
     protected static ?int $navigationSort = 2;
 
     public static function form(Form $form): Form
@@ -71,7 +67,8 @@ class GalleryResource extends Resource
         return $table
             ->columns([
                 ImageColumn::make('image')
-                    ->label('Image'),
+                    ->label('Image')
+                    ->disk('public'), // PERBAIKAN 1: Menambahkan disk agar gambar muncul
 
                 TextColumn::make('title')
                     ->searchable(),
@@ -99,9 +96,8 @@ class GalleryResource extends Resource
                     Tables\Actions\DeleteBulkAction::make(),
                 ]),
             ])
-            // Mengaktifkan fitur drag-and-drop untuk sorting
+            // PERBAIKAN 2: Kode ini sudah benar, pastikan model dan migrasi sudah sesuai
             ->reorderable('order_column')
-            // Mengurutkan tabel berdasarkan kolom order secara default
             ->defaultSort('order_column', 'asc');
     }
 

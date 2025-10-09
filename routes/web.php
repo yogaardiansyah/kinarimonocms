@@ -4,6 +4,7 @@
     use App\Http\Controllers\JFestController;
     use App\Http\Controllers\ArticleController;
     use App\Http\Controllers\GalleryController;
+    use App\Http\Controllers\CommunityApplicationController;
 
     Route::get('/', function () {
         // Ini memberitahu Laravel untuk merender file 'home.blade.php'
@@ -63,8 +64,9 @@
         return view('pages.prinsip-komunitas'); 
     })->name('pages.prinsip-komunitas');
 
-Route::get('/galeri', [GalleryController::class, 'index'])->name('pages.gallery');
+    Route::get('/galeri', [GalleryController::class, 'index'])->name('pages.gallery');
 
+    Route::post('/community/apply', [CommunityApplicationController::class, 'store'])->name('community.apply');
 
 //     // 1. Halaman Artikel / Blog
 // // Untuk menampilkan daftar semua artikel
