@@ -5,7 +5,8 @@
     use App\Http\Controllers\ArticleController;
     use App\Http\Controllers\GalleryController;
     use App\Http\Controllers\CommunityApplicationController;
-
+    use App\Http\Controllers\ContactMessageController;
+    
     Route::get('/', function () {
         // Ini memberitahu Laravel untuk merender file 'home.blade.php'
         return view('pages.home'); 
@@ -67,6 +68,7 @@
     Route::get('/galeri', [GalleryController::class, 'index'])->name('pages.gallery');
 
     Route::post('/community/apply', [CommunityApplicationController::class, 'store'])->name('community.apply');
+Route::post('/contact/submit', [ContactMessageController::class, 'store'])->name('contact.submit');
 
 //     // 1. Halaman Artikel / Blog
 // // Untuk menampilkan daftar semua artikel
