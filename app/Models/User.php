@@ -2,36 +2,34 @@
 
 namespace App\Models;
 
-// use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Filament\Models\Contracts\HasAvatar; // 1. Pastikan interface di-import
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
-use Spatie\Permission\Traits\HasRoles;
-use Filament\Models\Contracts\HasAvatar; // <-- Import
 use Illuminate\Support\Facades\Storage;
+use Spatie\Permission\Traits\HasRoles;
 
-class User extends Authenticatable
+// 2. Implementasikan interface HasAvatar di sini
+class User extends Authenticatable implements HasAvatar
 {
-    /** @use HasFactory<\Database\Factories\UserFactory> */
-    use HasFactory, Notifiable;
-
-    use HasRoles;
+    use HasFactory, Notifiable, HasRoles;
 
     /**
      * The attributes that are mass assignable.
      *
-     * @var list<string>
+     * @var array<int, string>
      */
     protected $fillable = [
         'name',
         'email',
         'password',
+        'avatar_url', // 3. TAMBAHKAN 'avatar_url' DI SINI (INI YANG PALING PENTING)
     ];
 
     /**
      * The attributes that should be hidden for serialization.
      *
-     * @var list<string>
+     * @var array<string, int, string>
      */
     protected $hidden = [
         'password',
@@ -51,8 +49,12 @@ class User extends Authenticatable
         ];
     }
 
-      public function getFilamentAvatarUrl(): ?string
+    /**
+     * Metode untuk mendapatkan URL avatar yang akan ditampilkan di panel Filament.
+     */
+    public function getFilamentAvatarUrl(): ?string
     {
-        return $this->avatar ? Storage::url($this->avatar) : null;
+        // 4. Pastikan menggunakan 'avatar_url' sesuai dengan nama kolom di database
+        return $this->avatar_url ? Storage::url($this->avatar_url) : null;
     }
 }
