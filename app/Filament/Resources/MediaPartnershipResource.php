@@ -42,7 +42,7 @@ class MediaPartnershipResource extends Resource
                     ->url()
                     ->required()
                     ->maxLength(255),
-                Forms\Components\TextInput::make('media_partner')
+                Forms\Components\TagsInput::make('media_partner')
                     ->label('Media Partner (Peliput)')
                     ->required()
                     ->maxLength(255),
